@@ -1,5 +1,13 @@
 # Olympic Games 2024
 
+## Access API and Access Documentation
+
+Launch API and then look at the console for instructions:
+```shell
+Server started at: localhost:8080
+Documentation can be found at: localhost:8080/swagger-ui.html
+```
+
 ## Connect to Database
 
 Add this in `application.properties`
