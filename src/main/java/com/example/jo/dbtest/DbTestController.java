@@ -1,19 +1,23 @@
-package com.example.jo;
+package com.example.jo.dbtest;
 
+import com.example.jo.RootController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class RootController {
-
+@RestController()
+public class DbTestController {
     private static final Logger logger = LoggerFactory.getLogger(RootController.class);
 
-    @GetMapping("/")
+    @Autowired
+    private DbTestService dbTestService;
+
+    @GetMapping("/test")
     public String sayHello() {
         logger.debug("TEST");
-        return "Hello World!";
+        dbTestService.testDbConnector();
+        return "Testing!";
     }
 }
