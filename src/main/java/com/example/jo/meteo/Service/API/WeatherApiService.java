@@ -1,6 +1,7 @@
 package com.example.jo.meteo.Service.API;
 
-import com.example.jo.meteo.Constant;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,13 +9,17 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+@Service
+public class WeatherApiService implements WeatherApiInterface{
 
-public class WeatherService {
-/*
-    public static final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
-    public static final String API_KEY = "384e6cfca66910e9fb4d16d74fff1fc8";
-  */private HttpRequest buildRequest(String city) throws URISyntaxException {
-        String query = Constant.API_URL + "?q=" + city + "&appid=" + Constant.API_KEY;
+    @Value("${api.url}")
+    private String api_url;
+
+    @Value("${api.key}")
+    private String api_key;
+
+    private HttpRequest buildRequest(String city) throws URISyntaxException {
+        String query = api_url + "?q=" + city + "&appid=" + api_key;
         URI uri = new URI(query);
         HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
         return request;
