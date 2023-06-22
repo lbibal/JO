@@ -1,4 +1,4 @@
-package com.example.jo.meteo.Persistence;
+package com.example.jo.meteo.Persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Meteo {

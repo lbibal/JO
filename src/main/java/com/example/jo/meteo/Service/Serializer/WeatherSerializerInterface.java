@@ -1,6 +1,6 @@
 package com.example.jo.meteo.Service.Serializer;
 
-import com.example.jo.meteo.Persistence.Meteo;
+import com.example.jo.meteo.Persistence.Entity.Meteo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface WeatherSerializerInterface {

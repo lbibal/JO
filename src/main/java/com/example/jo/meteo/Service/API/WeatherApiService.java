@@ -1,5 +1,7 @@
 package com.example.jo.meteo.Service.API;
 
+import com.example.jo.meteo.Service.Serializer.WeatherSerializerInterface;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,11 @@ public class WeatherApiService implements WeatherApiInterface{
 
     @Value("${api.key}")
     private String api_key;
+
+    private final WeatherSerializerInterface weatherSerializer;
+    public WeatherApiService(WeatherSerializerInterface weatherSerializer) {
+        this.weatherSerializer = weatherSerializer;
+    }
 
     private HttpRequest buildRequest(String city) throws URISyntaxException {
         String query = api_url + "?q=" + city + "&appid=" + api_key;
@@ -36,10 +43,11 @@ public class WeatherApiService implements WeatherApiInterface{
             throw new RuntimeException(e);
         }
     }
-    public String getWeatherForCity(String city) throws URISyntaxException {
+    public String getWeatherForCity(String city) throws URISyntaxException, JsonProcessingException {
         HttpRequest request = buildRequest(city);
         String response = sendRequest(request);
-        return response;
+        String partialWeatherJson = weatherSerializer.partialWeatherJson(response);
+        return partialWeatherJson;
     }
 
 }

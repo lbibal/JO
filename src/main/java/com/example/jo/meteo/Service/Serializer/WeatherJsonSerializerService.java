@@ -3,11 +3,11 @@ package com.example.jo.meteo.Service.Serializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.example.jo.meteo.Persistence.Meteo;
+import com.example.jo.meteo.Persistence.Entity.Meteo;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WeatherJsonSerializerService implements WeatherSerializerInterface {
-    // in this class we assume we are using exclusively weather
-    //json to object
     public Meteo weatherDeserializer(String weatherJson) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         String partialWeatherJson = partialWeatherJson(weatherJson);
