@@ -42,6 +42,9 @@ public class AccessoriesService implements ShopService<AccessoryDto> {
     @Override
     public Product decreaseProductQty(String productId) {
         Product product = getProductWithId(productId);
+        if (product.getQty() == 0)
+            return product;
+
         int newQuantity = product.getQty() - 1;
         jdbcTemplate.update("UPDATE accessoire SET qty = ? where id = ?", newQuantity, Integer.parseInt(productId));
         product.setQty(newQuantity);

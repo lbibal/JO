@@ -14,13 +14,13 @@ public class ClothesService implements ShopService<ClothesDto> {
     private JdbcTemplate jdbcTemplate;
 
     public Product addNewProduct(ClothesDto newClothes) {
-        Product newProduct = new Clothes(newClothes.getModelName(), newClothes.getPrice(), newClothes.getQty(), newClothes.getType());
+        Product newProduct = new Clothes(newClothes.getModelName(), newClothes.getPrice(), newClothes.getQty(), newClothes.getSize());
         jdbcTemplate.update(
-                "INSERT INTO jo.public.accessoire (name, price, qty, section) VALUES (?, ?, ?, ?)",
+                "INSERT INTO jo.public.vetement (name, price, qty, size) VALUES (?, ?, ?, ?)",
                 newClothes.getModelName(),
                 newClothes.getPrice(),
                 newClothes.getQty(),
-                newClothes.getType()
+                newClothes.getSize()
         );
         return newProduct;
     }
@@ -28,6 +28,9 @@ public class ClothesService implements ShopService<ClothesDto> {
     @Override
     public Product decreaseProductQty(String productId) {
         Product product = getProductWithId(productId);
+        if (product.getQty() == 0)
+            return product;
+
         int newQuantity = product.getQty() - 1;
         jdbcTemplate.update("UPDATE vetement SET qty = ? where id = ?", newQuantity, Integer.parseInt(productId));
         product.setQty(newQuantity);

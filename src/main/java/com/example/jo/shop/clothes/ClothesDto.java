@@ -3,7 +3,7 @@ package com.example.jo.shop.clothes;
 public class ClothesDto {
     private String modelName;
     private int price;
-    private String type;
+    private String size;
     private int qty;
 
     public String getModelName() {
@@ -14,8 +14,8 @@ public class ClothesDto {
         return price;
     }
 
-    public String getType() {
-        return type;
+    public String getSize() {
+        return size;
     }
 
     public int getQty() {
