@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RootController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RootController.class);
-
     @GetMapping("/")
     public String sayHello() {
-        logger.debug("TEST");
         return "Hello World!";
     }
 }
