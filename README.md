@@ -13,9 +13,9 @@ Documentation can be found at: localhost:8080/swagger-ui.html
 Add this in `application.properties`
 
 ```properties
-spring.datasource.jdbc-url=jdbc:postgresql://185.216.26.43:5432/jo
-spring.datasource.username=admin
-spring.datasource.password=admin
+spring.datasource.jdbc-url=jdbc:postgresql://db-ip:db-port/jo
+spring.datasource.username=username
+spring.datasource.password=pwd
 spring.datasource.oracleucp.database-name=jo
 logging.level.org.springframework=ERROR
 logging.level.io.app=TRACE
